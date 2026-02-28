@@ -1,9 +1,16 @@
 package user;
 
 public class PremiumUser extends User {
-    private String maxQuality = "4K";
-    private int downloadLimit = 100; // in GB
+    private final String maxQuality = "4K";
+    private final int downloadLimit = 100;
     private int downloadsUsed = 0;
+
+    public PremiumUser(String username, String password, String email) {
+        setUsername(username);
+        setPassword(password);
+        setEmail(email);
+        setSubscriptionType("premium");
+    }
 
     @Override
     public String getAccessLevel() {
@@ -38,6 +45,7 @@ public class PremiumUser extends User {
         }
     }
 
+    @Override
     public String toString() {
         return "PremiumUser{" +
                 "username='" + getUsername() + '\'' +
@@ -49,5 +57,4 @@ public class PremiumUser extends User {
                 ", downloadsUsed=" + downloadsUsed +
                 '}';
     }
-
 }
