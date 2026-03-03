@@ -73,7 +73,6 @@ public class User implements UserInterface{
         return watchHistory;
     }
 
-<<<<<<< HEAD
     public void setSubscription(Subscription subscription){
         this.subscription = subscription;
     }
@@ -82,9 +81,6 @@ public class User implements UserInterface{
         return subscription;
     }
 
-    public abstract String getAccessLevel();
-=======
->>>>>>> 6fc0daec17bba5660cc5cceb95d62e0834914aaf
     @Override
     public String getAccessLevel(){
         return "User Access: Basic access to the platform.";

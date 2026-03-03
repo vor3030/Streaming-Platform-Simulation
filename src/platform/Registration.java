@@ -1,6 +1,5 @@
 package platform;
 
-<<<<<<< HEAD
 import user.User;
 import user.FreeUser;
 import user.PremiumUser;
@@ -8,10 +7,12 @@ import billing.FreeSubscription;
 import billing.PremiumSubscription;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.*;
 
 public class Registration {
 
     private Platform platform;
+    private Scanner scan = new Scanner(System.in);
 
     public Registration(Platform platform) {
         this.platform = platform;
@@ -34,6 +35,7 @@ public class Registration {
             return true;
         }
         return false;
+    }
 
     public boolean isUsernameTaken(String username) {
         return platform.getUsers().stream().anyMatch(user -> user.getUsername().equals(username));
@@ -58,14 +60,7 @@ public class Registration {
         return register(username, password, email, subscriptionType);
     }
 
-=======
-import user.*;
-import java.util.*;
-
-public class Registration {
-    private Scanner scan = new Scanner(System.in);
->>>>>>> 6fc0daec17bba5660cc5cceb95d62e0834914aaf
-    public void registerNewUser(){
+    public void registerNewUserInteractive(){
         InputAuthenticator inputAuth = new InputAuthenticator();
         User user = new User();
 
@@ -74,7 +69,7 @@ public class Registration {
                 System.out.print("Enter Email: ");
                 String email = scan.nextLine();
                 if(!inputAuth.isValidEmail(email)){
-                    throw new InputMismatchException("Invalid email format! Try again.");
+                    throw new InputMismatchException("Invalid email format! Try again. Must contain '@' and a domain.");
                 }
                 user.setEmail(email);
                 break;
@@ -88,7 +83,7 @@ public class Registration {
                 System.out.print("Enter Password: ");
                 String password = scan.nextLine();
                 if(!inputAuth.isValidPassword(password)){
-                    throw new InputMismatchException("Invalid password format! Try again.");
+                    throw new InputMismatchException("Invalid password format! Try again. Must have at least 8 characters, including uppercase, lowercase, and a number.");
                 }
                 user.setPassword(password);
                 break;

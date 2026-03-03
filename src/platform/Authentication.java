@@ -1,7 +1,8 @@
 package platform;
 
+import user.User;
+
 public class Authentication {
-<<<<<<< HEAD
     private Platform platform;
     private User currentUser;
     private boolean isLoggedIn;
@@ -13,7 +14,6 @@ public class Authentication {
     }
 
     public boolean login(String username, String password) {
-        watchHistory.loadHistory(username);
         User user = platform.getUsers().stream()
                 .filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password))
                 .findFirst()
@@ -27,7 +27,6 @@ public class Authentication {
     }
 
     public void logout() {
-        watchHistory.saveHistory(currentUser);
         currentUser = null;
         isLoggedIn = false;
     }
@@ -39,8 +38,4 @@ public class Authentication {
     public boolean isLoggedIn() {
         return isLoggedIn;
     }
-
-=======
->>>>>>> 6fc0daec17bba5660cc5cceb95d62e0834914aaf
-    
 }
