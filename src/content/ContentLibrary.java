@@ -331,6 +331,28 @@ public class ContentLibrary {
         return mediaList;
     }
 
+    public List<String> getAllMovieTitles() {
+        List<String> titles = new ArrayList<>();
+
+        for(Media m : mediaList){
+            if(m instanceof Movie){
+                titles.add(m.getTitle());
+            }
+        }
+        return titles;
+    }
+
+    public List<String> getAllSeriesTitles() {
+        List<String> titles = new ArrayList<>();
+
+        for(Media m : mediaList){
+            if(m instanceof Series){
+                titles.add(m.getTitle());
+            }
+        }
+        return titles;
+    }
+
     public void addMedia(Media media) {
         mediaList.add(media);
     }

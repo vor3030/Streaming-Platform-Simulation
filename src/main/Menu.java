@@ -45,27 +45,61 @@ public class Menu {
 
         switch(option){
             case 1 -> {
-                ContentLibrary content = new ContentLibrary();
-                scan.nextLine();
-
-                System.out.print("Enter a Movie/Series title to search: ");
-                String title = scan.nextLine();
-
-                Media media = content.findByTitle(title);
-
-                if(media == null){
-                    System.out.println("No media found with the title: " + title);
-                }else{
-                    System.out.println("=== Media Found ===");
-                    System.out.println(media.getDetails());
-                    System.out.println();
-                    System.out.print("Do you want to play it? (y/n): ");
-                    String choice = scan.nextLine();
-                    if (choice.equalsIgnoreCase("y")) {
-                        media.play();
-                    }
-                }
+                search();
             }
+            case 2 -> {
+                displayMovieTitles();
+            }
+            case 3 -> {
+                displaySeriesTitles();
+            }
+        }
+    }
+
+    public void search(){
+        ContentLibrary content = new ContentLibrary();
+        scan.nextLine();
+
+        System.out.print("Enter a Movie/Series title to search: ");
+        String title = scan.nextLine();
+
+        Media media = content.findByTitle(title);
+
+        if(media == null){
+            System.out.println("No media found with the title: " + title);
+        }else{
+            System.out.println("=== Media Found ===");
+            System.out.println(media.getDetails());
+            System.out.println();
+            System.out.print("Do you want to play it? (y/n): ");
+            String choice = scan.nextLine();
+            if (choice.equalsIgnoreCase("y")) {
+                media.play();
+            }
+        }
+    }
+
+    public void displayMovieTitles(){
+        ContentLibrary library = new ContentLibrary();
+
+        List<String> movieTitles = library.getAllMovieTitles();
+
+        System.out.println("All Movies");
+
+        for(int i = 0; i < movieTitles.size(); i++){
+            System.out.println((i + 1) + ". " + movieTitles.get(i));
+        }
+    }
+
+    public void displaySeriesTitles(){
+        ContentLibrary library = new ContentLibrary();
+
+        List<String> seriesTitles = library.getAllSeriesTitles();
+
+        System.out.println("All Series");
+
+        for(int i = 0; i < seriesTitles.size(); i++){
+            System.out.println((i + 1) + ". " + seriesTitles.get(i));
         }
     }
 
