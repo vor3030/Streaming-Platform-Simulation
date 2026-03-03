@@ -10,57 +10,8 @@ import java.util.Scanner;
 import java.util.*;
 
 public class Registration {
-
-    private Platform platform;
     private Scanner scan = new Scanner(System.in);
-
-    public Registration(Platform platform) {
-        this.platform = platform;
-    }
-
-    public boolean register(String username, String password, String email, String subscriptionType) {
-        if (subscriptionType.equalsIgnoreCase("free")) {
-            FreeUser newUser = new FreeUser(username, password, email);
-            FreeSubscription freeSubscription = new FreeSubscription(username);
-            newUser.setSubscription(freeSubscription);
-            platform.addUser(newUser);
-            platform.addSubscription(freeSubscription);
-            return true;
-        } else if (subscriptionType.equalsIgnoreCase("premium")) {
-            PremiumUser newUser = new PremiumUser(username, password, email);
-            PremiumSubscription premiumSubscription = new PremiumSubscription(username, "monthly");
-            newUser.setSubscription(premiumSubscription);
-            platform.addUser(newUser);
-            platform.addSubscription(premiumSubscription);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isUsernameTaken(String username) {
-        return platform.getUsers().stream().anyMatch(user -> user.getUsername().equals(username));
-    }
-
-    public boolean isValidEmail(String email) {
-        return email.contains("@") && email.contains(".");
-    }
-
-    public boolean isValidPassword(String password) {
-        return password.length() >= 6;
-    }   
-
-    public void displayRegistrationInfo(){
-        System.out.println("Registration information displayed.");
-    }
-
-    public boolean registerNewUser(String username, String password, String email, String subscriptionType) {
-        if (!isValidEmail(email) || !isValidPassword(password) || isUsernameTaken(username)) {
-            return false;
-        }
-        return register(username, password, email, subscriptionType);
-    }
-
-    public void registerNewUserInteractive(){
+    public void registerNewUser(){
         InputAuthenticator inputAuth = new InputAuthenticator();
         User user = new User();
 

@@ -336,8 +336,15 @@ public class ContentLibrary {
     }
 
     public Media findByTitle(String title) {
+        if (title == null) {
+            return null;
+        }
+
+        String query = title.trim().toLowerCase();
+
         for (Media m : mediaList) {
-            if (m.getTitle().equalsIgnoreCase(title)) {
+            if (m.getTitle() != null &&
+                    m.getTitle().toLowerCase().contains(query)) {
                 return m;
             }
         }
