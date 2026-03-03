@@ -1,8 +1,7 @@
 package billing;
 
 public class FreeSubsription {
-    public void display{
+    public void display(){
         System.out.print("Hi");
     }
-
 }

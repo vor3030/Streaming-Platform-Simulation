@@ -1,46 +1,5 @@
 package platform;
 
-import user.User;
-import admin.WatchHistory;
-
 public class Authentication {
-    private Platform platform;
-    private User currentUser;
-    private boolean isLoggedIn;
-
-    public Authenticatoin(Platform platform) {
-        this.platform = platform;
-        this.currentUser = null;
-        this.isLoggedIn = false;
-    }
-
-    public boolean login(String username, String password) {
-        watchHistory.loadHistory(username);
-        User user = platform.getUsers().stream()
-                .filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password))
-                .findFirst()
-                .orElse(null);
-        if (user != null) {
-            currentUser = user;
-            isLoggedIn = true;
-            return true;
-        }
-        return false;
-    }
-
-    public void logout() {
-        watchHistory.saveHistory(currentUser);
-        currentUser = null;
-        isLoggedIn = false;
-    }
-
-    public User getCurrentUser() {
-        return currentUser;
-    }
-
-    public boolean isLoggedIn() {
-        return isLoggedIn;
-    }
-
     
 }

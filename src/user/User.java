@@ -2,7 +2,7 @@ package user;
 
 import admin.WatchHistory;
 
-public abstract class User{
+public class User implements UserInterface{
     private String username;
     private String email;
     private String password;
@@ -21,64 +21,68 @@ public abstract class User{
         this.subscriptionType = "free"; // default
     }
 
+    @Override
     public void setUsername(String username){
-        if(username == null || username.trim().isEmpty()){
-            throw new IllegalArgumentException("Username cannot be empty");
-        }
         this.username = username;
     }
 
+    @Override
     public String getUsername(){
         return username;
     }
 
+    @Override
     public void setEmail(String email){
-        if(email == null || !email.contains("@")){
-            throw new IllegalArgumentException("Invalid email address");
-        }
         this.email = email;
     }
 
+    @Override
     public String getEmail(){
         return email;
     }
 
+    @Override
     public void setPassword(String password){
-        if(password == null || password.length() < 6){
-            throw new IllegalArgumentException("Password must be at least 6 characters");
-        }
         this.password = password;
     }
 
+    @Override
     public String getPassword(){
         return password;
     }
 
-    public boolean validatePassword(String candidate) {
-        return password.equals(candidate);
-    }
-
-    public boolean validateEmail(String candidate) {
-        return email.equals(candidate);
-    }
-
+    @Override
     public void setSubscriptionType(String subscriptionType){
         this.subscriptionType = subscriptionType;
     }
 
+    @Override
     public String getSubscriptionType(){
         return subscriptionType;
     }
 
+    @Override
     public void setWatchHistory(WatchHistory watchHistory){
         this.watchHistory = watchHistory;
     }
 
+    @Override
     public WatchHistory getWatchHistory(){
         return watchHistory;
     }
 
-    public abstract String getAccessLevel();
     @Override
-    public abstract String toString();
+    public String getAccessLevel(){
+        return "User Access: Basic access to the platform.";
+    }
+
+    @Override
+    public String toString(){
+        return "User{" +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", subscriptionType='" + subscriptionType + '\'' +
+                ", watchHistory='" + watchHistory + '\'' +
+                '}';
+    }
 }
