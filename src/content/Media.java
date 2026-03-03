@@ -1,8 +1,8 @@
+package content;
 
 public class Media {
     public void displayMediaInfo(){
-        System.out.println("Media information displayed.");
-        System.out.print("hello sir");
+        System.out.println("ano na yahhh, commit na");
     }
 
 }

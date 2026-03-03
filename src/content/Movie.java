@@ -1,5 +1,5 @@
+package content;
 
-
-public class Movie {
+public class Movie extends Media {
 
 }

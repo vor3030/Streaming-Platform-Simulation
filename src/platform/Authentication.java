@@ -8,7 +8,7 @@ public class Authentication {
     private User currentUser;
     private boolean isLoggedIn;
 
-    public Authenticatoin(Platform platform) {
+    public Authentication(Platform platform) {
         this.platform = platform;
         this.currentUser = null;
         this.isLoggedIn = false;

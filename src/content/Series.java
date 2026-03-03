@@ -1,4 +1,5 @@
+package content;
 
-public class Series {
+public class Series extends Media {
 
 }

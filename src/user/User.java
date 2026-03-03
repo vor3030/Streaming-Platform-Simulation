@@ -1,6 +1,7 @@
 package user;
 
 import admin.WatchHistory;
+import billing.Subscription;
 
 public abstract class User{
     private String username;
@@ -8,6 +9,7 @@ public abstract class User{
     private String password;
     private String subscriptionType;
     private WatchHistory watchHistory;
+    private Subscription subscription;
 
     public User() {
         // Default no-arg constructor
@@ -76,6 +78,14 @@ public abstract class User{
 
     public WatchHistory getWatchHistory(){
         return watchHistory;
+    }
+
+    public void setSubscription(Subscription subscription){
+        this.subscription = subscription;
+    }
+
+    public Subscription getSubscription(){
+        return subscription;
     }
 
     public abstract String getAccessLevel();

@@ -1,49 +1,57 @@
 package billing;
 
 public abstract class Subscription {
-    private String planType;
-    private double price;
-    private String billingCycle;
-    private String features;
 
-    public abstract double calculateBill();
+    private String subscriberName;
+    private double monthlyCost;
+    private boolean isActive;
 
-    public void setPlanType(String planType) {
-        this.planType = planType;
+    public Subscription(String subscriberName, double monthlyCost) {
+        this.subscriberName = subscriberName;
+        this.monthlyCost = monthlyCost;
+        this.isActive = true;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    // Abstract methods - subclasses must implement
+    public abstract void displayPlanDetails();
+    public abstract boolean canAccessContent(String contentType);
+    public abstract double getMonthlyCost();
+
+    // Getters
+    public String getSubscriberName() {
+        return subscriberName;
     }
 
-    public void setBillingCycle(String billingCycle) {
-        this.billingCycle = billingCycle;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setFeatures(String features) {
-        this.features = features;
+    public double getMonthlySubscriptionCost() {
+        return monthlyCost;
     }
 
-    public String getPlanType() {
-        return planType;
+    // Setters
+    public void setSubscriberName(String subscriberName) {
+        this.subscriberName = subscriberName;
     }
 
-    public double getPrice() {
-        return price;
+    public void setActive(boolean active) {
+        this.isActive = active;
     }
 
-    public String getBillingCycle() {
-        return billingCycle;
+    // Common methods
+    public void cancelSubscription() {
+        this.isActive = false;
+        System.out.println(subscriberName + "'s subscription has been cancelled.");
     }
 
-    public String getFeatures() {
-        return features;
+    public void reactivateSubscription() {
+        this.isActive = true;
+        System.out.println(subscriberName + "'s subscription has been reactivated.");
     }
 
+    @Override
     public String toString() {
-        return "Subscription Plan: " + planType + "\nPrice: $" + price + "\nBilling Cycle: " + billingCycle + "\nFeatures: " + features;
+        return "Subscription{subscriber='" + subscriberName + "', active=" + isActive + "}";
     }
-
-
-
 }

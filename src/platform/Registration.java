@@ -4,8 +4,8 @@ package platform;
 import user.User;
 import user.FreeUser;
 import user.PremiumUser;
-import biling.FreeSubscription;
-import biling.PremiumSubscription;
+import billing.FreeSubscription;
+import billing.PremiumSubscription;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,13 +20,17 @@ public class Registration {
     public boolean register(String username, String password, String email, String subscriptionType) {
         if (subscriptionType.equalsIgnoreCase("free")) {
             FreeUser newUser = new FreeUser(username, password, email);
+            FreeSubscription freeSubscription = new FreeSubscription(username);
+            newUser.setSubscription(freeSubscription);
             platform.addUser(newUser);
-            platform.addSubscription(new FreeSubscription(newUser));
+            platform.addSubscription(freeSubscription);
             return true;
         } else if (subscriptionType.equalsIgnoreCase("premium")) {
             PremiumUser newUser = new PremiumUser(username, password, email);
+            PremiumSubscription premiumSubscription = new PremiumSubscription(username, "monthly");
+            newUser.setSubscription(premiumSubscription);
             platform.addUser(newUser);
-            platform.addSubscription(new PremiumSubscription(newUser));
+            platform.addSubscription(premiumSubscription);
             return true;
         }
         return false;
