@@ -59,7 +59,10 @@ public class Menu {
 
         switch(option){
             case 1 -> {
-                search();
+                scan.nextLine();
+                System.out.print("Enter a Movie/Series title to search: ");
+                String title = scan.nextLine();
+                search(title);
             }
             case 2 -> {
                 displayMovieTitles();
@@ -78,7 +81,7 @@ public class Menu {
 
     public void displayPlanTypes(String username){
         Subscription freeSubs = new FreeSubscription(user.getUsername());
-        Subscription premSubs = new PremiumSubscription(user.getUsername(), "annual");
+        Subscription premSubs = new PremiumSubscription(user.getUsername(), "Premium");
         System.out.println("Choose the plan that's right for you!");
 
         freeSubs.displayPlanDetails();
@@ -95,7 +98,6 @@ public class Menu {
             System.out.println("=== Media Found ===");
             System.out.println(media.getDetails());
             System.out.println();
-            scan.nextLine();
             System.out.print("Do you want to play it? (y/n): ");
             String choice = scan.nextLine();
             if (choice.equalsIgnoreCase("y")) {
@@ -117,29 +119,6 @@ public class Menu {
                 }
             }else{
                 menuOptions();
-            }
-        }
-    }
-
-    public void search(){
-        scan.nextLine();
-
-        System.out.print("Enter a Movie/Series title to search: ");
-        String title = scan.nextLine();
-
-        Media media = library.findByTitle(title);
-
-        if(media == null){
-            System.out.println("No media found with the title: " + title);
-        }else{
-            System.out.println("=== Media Found ===");
-            System.out.println(media.getDetails());
-            System.out.println();
-            System.out.print("Do you want to play it? (y/n): ");
-            String choice = scan.nextLine();
-            if (choice.equalsIgnoreCase("y")) {
-                history.addRecord(title);
-                media.play();
             }
         }
     }
@@ -170,6 +149,11 @@ public class Menu {
 
                 if(choice == 0){
                     menuOptions();
+                    return;
+                }
+                if (choice < 1 || choice > freeMovieTitles.size()) {
+                    System.out.println("Invalid option. Choose again!");
+                    continue;
                 }
 
                 if(platform.getCurrentSubscription().equals("premium")){
@@ -214,6 +198,12 @@ public class Menu {
 
                 if(choice == 0){
                     menuOptions();
+                    return;
+                }
+
+                if (choice < 1 || choice > freeSeriesTitles.size()) {
+                    System.out.println("Invalid option. Choose again!");
+                    continue;
                 }
 
                 if(platform.getCurrentSubscription().equals("premium")){
@@ -240,7 +230,7 @@ public class Menu {
             System.out.println((i + 1) + ". " + historyTitles.get(i));
         }
 
-        System.out.println("- Clear History List");
+        System.out.println((i + 1) + ". Clear History List");
         System.out.println("0. Exit");
 
         while(true){
@@ -250,7 +240,7 @@ public class Menu {
 
                 if(choice == 0)
                     menuOptions();
-                if(choice == ')
+                if(choice == historyTitles.size() - 1);
                     history.clearHistory();
 
                 String title = historyTitles.get(i);
