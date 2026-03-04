@@ -1,5 +1,7 @@
 package admin;
 
+import content.*;
+import user.*;
 import java.util.List;
 import content.Media;
 import user.User;
