@@ -24,6 +24,8 @@ public class Menu {
         registration.registerNewUser();
         registration.setUsername();
         this.user = registration.getUser();
+        // attach shared watch history to user so admin.Recommendation can use it
+        this.user.setWatchHistory(history);
         displayPlanTypes(user.getUsername());
 
         registration.choosePlanType();
@@ -38,9 +40,10 @@ public class Menu {
         System.out.println("Menu");
         System.out.println("1. Search");
         System.out.println("2. Movies");
-        System.out.println("3. Series ");
-        System.out.println("4. Watch History");
-        System.out.println("5. Log out");
+        System.out.println("3. Series");
+        System.out.println("4. Recommendation");
+        System.out.println("5. Watch History");
+        System.out.println("6. Log out");
 
         int option = 0;
         while(true){
@@ -71,9 +74,12 @@ public class Menu {
                 displaySeriesTitles();
             }
             case 4 -> {
+                displayRecommendation();
+            }
+            case 5 -> {
                 displayWatchHistory();
             }
-            case 5 ->{
+            case 6 ->{
                 break;
             }
         }
@@ -86,7 +92,6 @@ public class Menu {
 
         freeSubs.displayPlanDetails();
         premSubs.displayPlanDetails();
-
     }
 
     public void search(String title){
@@ -98,10 +103,12 @@ public class Menu {
             System.out.println("=== Media Found ===");
             System.out.println(media.getDetails());
             System.out.println();
+            scan.nextLine(); // consume leftover newline from previous nextInt if any
             System.out.print("Do you want to play it? (y/n): ");
             String choice = scan.nextLine();
             if (choice.equalsIgnoreCase("y")) {
                 history.addRecord(title);
+                history.addWatchedMedia(media);
                 media.play();
 
                 while(true){
@@ -248,6 +255,48 @@ public class Menu {
                 break;
             }catch(InputMismatchException e){
                 System.out.println("Invalid Choice. Try again!");
+                scan.nextLine();
+            }
+        }
+    }
+
+    public void displayRecommendation(){
+        Recommendation recommendation = new Recommendation();
+        List<Media> allMedia = platform.getContentLibrary().getAllMedia();
+        List<Media> recommended = recommendation.recommendMedia(user, allMedia);
+
+        if (recommended == null || recommended.isEmpty()) {
+            System.out.println("No recommendations yet. Watch something first!");
+            return;
+        }
+
+        System.out.println("Recommended for you:");
+        for (int i = 0; i < recommended.size(); i++) {
+            Media m = recommended.get(i);
+            System.out.println((i + 1) + ". " + m.getTitle() + " (" + m.getGenre() + ")");
+        }
+        System.out.println("0. Exit");
+
+        while (true) {
+            try {
+                System.out.print("Choose a title to play: ");
+                int choice = scan.nextInt();
+
+                if (choice == 0) {
+                    menuOptions();
+                    return;
+                }
+
+                if (choice < 1 || choice > recommended.size()) {
+                    System.out.println("Invalid option. Try again!");
+                    continue;
+                }
+
+                Media selected = recommended.get(choice - 1);
+                search(selected.getTitle());
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid option. Try again!");
                 scan.nextLine();
             }
         }
