@@ -102,7 +102,6 @@ public class Menu {
             System.out.println("=== Media Found ===");
             System.out.println(media.getDetails());
             System.out.println();
-            scan.nextLine(); // consume leftover newline from previous nextInt if any
             System.out.print("Do you want to play it? (y/n): ");
             String choice = scan.nextLine();
             if (choice.equalsIgnoreCase("y")) {
@@ -151,7 +150,7 @@ public class Menu {
             try{
                 System.out.print("Choose a movie title: ");
                 int choice = scan.nextInt();
-                scan.nextLine(); // Consume the newline character
+                scan.nextLine();
 
                 if(choice == 0){
                     menuOptions();
@@ -201,7 +200,7 @@ public class Menu {
             try{
                 System.out.print("Choose a series title: ");
                 int choice = scan.nextInt();
-                scan.nextLine(); // Consume the newline character
+                scan.nextLine();
 
                 if(choice == 0){
                     menuOptions();
@@ -276,6 +275,7 @@ public class Menu {
 
         if (recommended == null || recommended.isEmpty()) {
             System.out.println("No recommendations yet. Watch something first!");
+            menuOptions();
             return;
         }
 
