@@ -27,6 +27,31 @@ public abstract class Media {
 
     public abstract String getDetails();
 
+    // --- Setters ---
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }   
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }   
+
+    public void setReleaseYear(int releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setIsPremium(boolean isPremium) {
+        this.isPremium = isPremium;
+    }
+
     // --- Getters ---
 
     public String getTitle() {

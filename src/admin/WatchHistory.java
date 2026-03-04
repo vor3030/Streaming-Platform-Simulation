@@ -1,5 +1,6 @@
 package admin;
 
+import content.Media;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +12,17 @@ import java.util.List;
 public class WatchHistory {
     private String userName;
     private List<String> historyList;
+    private List<Media> watchedMedia;
 
     public WatchHistory() {
         this.historyList = new ArrayList<>();
+        this.watchedMedia = new ArrayList<>();
     }
 
     public WatchHistory(String userName) {
         this.userName = userName;
         this.historyList = new ArrayList<>();
+        this.watchedMedia = new ArrayList<>();
     }
 
     public String getUserName() {
@@ -33,15 +37,34 @@ public class WatchHistory {
         return historyList;
     }
 
+    public List<Media> getWatchedMedia() {
+        return watchedMedia;
+    }
+
     public void addRecord(String mediaTitle) {
         if (mediaTitle != null && !mediaTitle.isEmpty()) {
             historyList.add(mediaTitle);
         }
     }
 
+    public void addWatchedMedia(Media media) {
+        if (media != null) {
+            watchedMedia.add(media);
+        }
+    }
+
     public void clearHistory() {
         historyList.clear();
+        watchedMedia.clear();
     }
+
+    public String getWatchMedia() {
+        if (historyList.isEmpty()) {
+            return "No media watched yet.";
+        }
+        return String.join(", ", historyList);
+    }
+
 
     @Override
     public String toString() {
