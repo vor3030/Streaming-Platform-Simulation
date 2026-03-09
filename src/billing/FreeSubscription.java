@@ -46,6 +46,24 @@ public class FreeSubscription extends Subscription {
         return MAX_QUALITY;
     }
 
+    public boolean canAccessPremiumContent()
+    {
+        return false;
+    }
+
+    public boolean shouldShowAds()
+    {
+        return true;
+    }   
+
+    public String getQualityRestriction() {
+        return "480p";
+    }
+
+    public boolean canDownload() {
+        return false;
+    }
+    
     @Override
     public String toString() {
         return "FreeSubscription{subscriber='" + getSubscriberName() + "', fee=Free}";

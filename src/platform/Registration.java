@@ -1,12 +1,12 @@
 package platform;
 
-import user.User;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import user.User;
 
 public class Registration {
-    private Scanner scan = new Scanner(System.in);
-    private User user = new User();
+    private final Scanner scan = new Scanner(System.in);
+    private final User user = new User();
     public void registerNewUser(){
         InputAuthenticator inputAuth = new InputAuthenticator();
 

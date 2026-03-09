@@ -390,4 +390,34 @@ public class ContentLibrary {
         }
         return titles;
     }
+
+    public List<String> getAccessibleMovieTitles(String subscriptionType) {
+    List<String> titles = new ArrayList<>();
+    
+    for(Media m : mediaList){
+        if(m instanceof Movie){
+            // If free user, skip premium movies
+            if (subscriptionType.equals("free") && m.getIsPremium()) {
+                continue;
+            }
+            titles.add(m.getTitle());
+        }
+    }
+    return titles;
+}
+
+public List<String> getAccessibleSeriesTitles(String subscriptionType) {
+    List<String> titles = new ArrayList<>();
+    
+    for(Media m : mediaList){
+        if(m instanceof Series){
+            // If free user, skip premium series
+            if (subscriptionType.equals("free") && m.getIsPremium()) {
+                continue;
+            }
+            titles.add(m.getTitle());
+        }
+    }
+    return titles;
+}
 }

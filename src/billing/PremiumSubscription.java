@@ -51,6 +51,21 @@ public class PremiumSubscription extends Subscription {
         return MAX_QUALITY;
     }
 
+    public boolean canAccessPremiumContent() {
+        return true;
+    }
+
+    public boolean shouldShowAds() {
+        return false;
+    }
+
+    public boolean canDownload() {
+        return true;
+    }
+
+    public String getQualityRestriction() {
+        return "4k";
+    }
     @Override
     public String toString() {
         return "PremiumSubscription{subscriber='" + getSubscriberName() 

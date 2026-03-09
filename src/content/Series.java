@@ -3,8 +3,8 @@ package content;
 public class Series extends Media {
 
     // --- Private Attributes ---
-    private int totalSeasons;
-    private int totalEpisodes;
+    private final int totalSeasons;
+    private final int totalEpisodes;
     private int currentEpisode;
     private int currentSeason;
 

@@ -1,10 +1,8 @@
 package platform;
 
-import java.util.Scanner;
 import user.User;
 
 public class Authentication {
-    private final Scanner scan = new Scanner(System.in);
     private final Platform platform;
 
     public Authentication(Platform platform) {

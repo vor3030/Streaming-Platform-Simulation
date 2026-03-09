@@ -3,9 +3,9 @@ package content;
 public class Movie extends Media {
 
     // --- Private Attributes ---
-    private int duration;       // Length of the movie in minutes
-    private String cast;        // Main cast members as a single string
-    private String director;    // Name of the director
+    private final int duration;       // Length of the movie in minutes
+    private final String cast;        // Main cast members as a single string
+    private final String director;    // Name of the director
 
 
     // --- Constructor ---

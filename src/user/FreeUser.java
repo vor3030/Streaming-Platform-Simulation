@@ -1,8 +1,8 @@
 package user;
 
 public class FreeUser extends User {
-    private boolean adsEnabled = true;
-    private String maxQuality = "480p";
+    private final boolean adsEnabled = true;
+    private final String maxQuality = "480p";
 
     public FreeUser(String username, String email, String password) {
         super(username, email, password);
