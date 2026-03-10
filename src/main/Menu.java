@@ -28,7 +28,6 @@ public class Menu {
         Authentication auth = new Authentication(platform);
 
         System.out.println("1. Register");
-        System.out.println("2. Login");
         System.out.print("Choose: ");
         String choice = scan.nextLine().trim();
 

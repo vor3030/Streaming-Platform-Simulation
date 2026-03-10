@@ -2,20 +2,18 @@ package content;
 
 public class Series extends Media {
 
-    // --- Private Attributes ---
     private final int totalSeasons;
-    private final int totalEpisodes;
+    private final int episodesPerSeason;
     private int currentEpisode;
     private int currentSeason;
 
-    // --- Constructor ---
     public Series(String title, String genre, double rating, int releaseYear,
-                  String description, int totalSeasons, int totalEpisodes, boolean isPremium) {
+                  String description, int totalSeasons, int episodesPerSeason, boolean isPremium) {
         super(title, genre, rating, releaseYear, description, isPremium);
-        this.totalSeasons = totalSeasons;
-        this.totalEpisodes = totalEpisodes;
-        this.currentEpisode = 1;
-        this.currentSeason = 1;
+        this.totalSeasons      = totalSeasons;
+        this.episodesPerSeason = episodesPerSeason;
+        this.currentEpisode    = 1;
+        this.currentSeason     = 1;
     }
 
     @Override
@@ -31,9 +29,6 @@ public class Series extends Media {
         System.out.println("  Up next: Season " + currentSeason + ", Episode " + currentEpisode);
     }
 
-    /**
-     * Returns title, genre, seasons, and episodes.
-     */
     @Override
     public String getDetails() {
         return "SERIES: " + getTitle() +
@@ -41,13 +36,12 @@ public class Series extends Media {
                 "\nRating: " + getRating() +
                 "\nRelease Year: " + getReleaseYear() +
                 "\nTotal Seasons: " + totalSeasons +
-                "\nTotal Episodes: " + totalEpisodes +
+                "\nEpisodes Per Season: " + episodesPerSeason +
                 "\nCurrently On: Season " + currentSeason + ", Episode " + currentEpisode +
                 "\nDescription: " + getDescription();
     }
 
     public void nextEpisode() {
-        int episodesPerSeason = totalEpisodes / totalSeasons;
         if (currentEpisode < episodesPerSeason) {
             currentEpisode++;
         } else if (currentSeason < totalSeasons) {
@@ -58,20 +52,8 @@ public class Series extends Media {
         }
     }
 
-
-    public int getTotalSeasons() {
-        return totalSeasons;
-    }
-
-    public int getTotalEpisodes() {
-        return totalEpisodes;
-    }
-
-    public int getCurrentEpisode() {
-        return currentEpisode;
-    }
-
-    public int getCurrentSeason() {
-        return currentSeason;
-    }
+    public int getTotalSeasons()      { return totalSeasons; }
+    public int getEpisodesPerSeason() { return episodesPerSeason; }
+    public int getCurrentEpisode()    { return currentEpisode; }
+    public int getCurrentSeason()     { return currentSeason; }
 }
